@@ -1,0 +1,8 @@
+# MATLAB / Simulink artifacts that must never be committed
+slprj/
+*.autosave
+*.asv
+*.mex*
+*.slxc
+*.orig
+SV16_RevA/Simulink/sv16_tb_*
