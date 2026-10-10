@@ -25,18 +25,11 @@ user veto before Stage 9 control unit), `OPEN` (awaiting user decision),
 | D-016 | Status register not directly readable/writable by instructions in Rev A | No READSR/WRITESR opcode allocated; avoids half-designed flag games | Add opcodes — deferred to Rev B with interrupts | FROZEN-v0.1 |
 | D-017 | Peripheral page `0xFFFF_xxxx` reserved, reads 0/writes ignored until Stage 12 | Deterministic Stage 11 behavior with map already fixed | Fault on peripheral access — harsher, no benefit yet | FROZEN |
 
-## OPEN items requiring a user decision (none block Stages 2–8)
+## OPEN items requiring a user decision
 
-1. **D-003/D-005/D-006 veto window.** The instruction encoding (FROZEN-v0.1) is
-   reconstructed from legacy intent, resized to the mandated 8-GPR/32-bit
-   architecture. If you want different opcode numbering, a 6-bit opcode, or
-   word-addressed PC (+1 instead of +4), say so **before Stage 9 (control
-   unit)**; all builders read field positions and opcodes from
-   `Scripts/sv16_isa.m`, so a change is a single-file edit plus a test update.
-2. **D-013 memory sizes** — 4096 words each is a model-size compromise; say
-   the word and the constant changes.
-3. **MUL/DIV inclusion** — both were in the legacy ALU (F-07 notes no shifts,
-   but Product/Divide blocks existed) and are in the approved op list; they
-   stay unless you want them removed to shrink the ALU.
-
-Nothing else in Stages 2–8 depends on an undocumented architectural choice.
+**None.** The veto window was exercised on 2026-10-10: the user ratified
+ISA v0.1 (D-005/D-006), the byte-addressed PC +4 (D-003), and MUL/DIV
+retention (D-011). All formerly FROZEN-v0.1 items are now **FROZEN**.
+(1) D-013 memory sizes (4096 words each) stands as ratified by silence with
+the rest of the package; it remains a one-constant change (`sv16_isa.m`)
+should the user ever revisit it.

@@ -1,8 +1,8 @@
 # SV-16 Rev A — Architecture Specification
 
-**Status:** FROZEN for Stages 2–5 (clock/reset, register bank, PC, ALU, status).
-ISA field positions and opcode numbering are FROZEN-v0.1; see `decision_log.md`
-for the three decisions awaiting user confirmation before Stage 9 (control unit).
+**Status:** FROZEN. ISA v0.1 field positions, opcode numbering, byte-addressed
+PC (+4), and MUL/DIV retention were **ratified by the user on 2026-10-10**
+(see `decision_log.md`). No open architectural decisions remain.
 **Source of truth for implementation:** `Scripts/sv16_isa.m` — this document is
 its human-readable mirror. If they ever disagree, `sv16_isa.m` wins and this
 document must be corrected.

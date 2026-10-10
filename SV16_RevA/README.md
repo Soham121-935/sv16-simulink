@@ -64,16 +64,17 @@ flags Z/N/C/V, Harvard IMEM/DMEM, synchronous active-high reset. Full detail:
 `Architecture/architecture_specification.md`; single source of truth for
 encodings: `Scripts/sv16_isa.m`.
 
-## Decisions awaiting your veto (before Stage 9 — none block Stages 2–8)
+## Decisions — ratified and FROZEN (2026-10-10)
 
-1. **Opcode numbering + field positions** (D-005/D-006, `instruction_set.md`)
-   — reconstructed from legacy intent, resized to the mandated 8-GPR/32-bit
-   architecture. All builders read them from `sv16_isa.m`; a change is one
-   file edit.
-2. **Byte-addressed PC, +4 per instruction** (D-003) — alternative: word
-   addressing (+1).
-3. **Memory sizes**: 4096 words IMEM + 4096 words DMEM (D-013); **MUL/DIV
-   retained** (D-011: ÷0 → 0xFFFF, no trap).
+1. **Instruction encoding = ISA v0.1** (D-005/D-006): 5-bit opcode at
+   [31:27], 3-bit register fields, R/I/B/J formats — exactly as in
+   `Architecture/instruction_set.md`.
+2. **Byte-addressed PC, +4 per instruction** (D-003).
+3. **MUL/DIV retained** (D-011; ÷0 → 0xFFFF, no trap), memories 4096 words
+   each (D-013).
+
+No open architectural decisions remain. Next: verification of Stages 2–6 on
+the user's MATLAB, then Stages 7–9 implementation.
 
 ## Key scripts
 
